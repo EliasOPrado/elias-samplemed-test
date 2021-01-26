@@ -22,20 +22,55 @@ function App() {
     ).catch(error => console.log(error))
   }, [])
 
+  const updatedInformation = (article) => {
+    const new_article = articles.map(myarticle => {
+      if(myarticle.id === article.id){
+        return article;
+      }else {
+        return myarticle;
+      }
+    })
+
+    setEditArticle(new_article);
+  }
+
+  const articleForm = () => {
+    setEditArticle({title: '', description: ''})
+  }
+
   const editBtn = (article) => {
     setEditArticle(article)
   }
 
+  const insertedInformation = (article) => {
+    const new_articles = [...articles, article];
+    setArticles(new_articles);
+  }
+
   return (
     <div className="App">
-      
+
+      <div className="row">
+
+      <div className="col">
        <h1>Samplemed Test - Blog</h1>
        <br/><br/>
+       </div>
+       <div className="col">
+         <button onClick= {articleForm} className="btn btn-primary">Add Article</button>
+       </div>
+       </div>
+      
+
       <ArticleList 
       articles={articles}
       editBtn={editBtn}
       />
-  {editArticle ?   <Form article={editArticle}/> : null}
+  {editArticle ?   <Form 
+                    article={editArticle}
+                    updatedInformation = {updatedInformation}
+                    insertedInformation = {insertedInformation}/> 
+                    : null}
       
     </div>
   );
