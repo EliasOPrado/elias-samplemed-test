@@ -2,7 +2,7 @@
 
 ### Perguntas
 
-Voce pode ir para as [perguntas aqui](samplemed-test/samplemed_test_files/perguntas.md)
+Voce pode ir para as [perguntas aqui](samplemed_test_files/perguntas.md)
 
 ### Estrutura do projeto
 
