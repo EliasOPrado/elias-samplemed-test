@@ -1,36 +1,47 @@
 
 export default class APIService {
-    static updateArticle(article_id, body) {
+    static updateArticle(article_id, body, token) {
         return fetch(`http://127.0.0.1:8000/articles/${article_id}/`, {
             'method': 'PUT',
             headers: {
                 'content-type': 'application/json',
-                'Authorization': 'Token 86a65a3b92e8f791fde3eac28f8cc6c130e44e1d'
+                'Authorization': `Token ${token}`
               },
               body:JSON.stringify(body)
         }).then(resp => resp.json())
 
     }
 
-    static insertArticle(body){
+    static insertArticle(body, token){
         return fetch('http://127.0.0.1:8000/articles/', {
             'method': 'POST',
             headers: {
                 'content-type': 'application/json',
-                'Authorization': 'Token 86a65a3b92e8f791fde3eac28f8cc6c130e44e1d'
+                'Authorization': `Token ${token}`
               },
               body:JSON.stringify(body)
         }).then(resp => resp.json())
     }
 
-    static DeleteArticle(article_id){
+    static DeleteArticle(article_id, token){
         return fetch(`http://127.0.0.1:8000/articles/${article_id}/`, {
             'method': 'DELETE',
             headers: {
                 'content-type': 'application/json',
-                'Authorization': 'Token 86a65a3b92e8f791fde3eac28f8cc6c130e44e1d'
+                'Authorization': `Token ${token}`
               },
               
         })
+    }
+
+    static LoginUser(body){
+        return fetch('http://127.0.0.1:8000/auth/', {
+            'method': 'POST',
+            headers: {
+                'content-type': 'application/json',
+                
+            },
+            body: JSON.stringify(body)
+        }).then(resp => resp.json())
     }
 }
